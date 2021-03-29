@@ -48,7 +48,8 @@ class _GalleryPreviewerState extends State<GalleryPreviewer> {
   @override
   void initState() {
     super.initState();
-    _pageController = PagewiseLoadController<AssetEntity>(pageFuture: loadMore, pageSize: perPage);
+    _pageController = PagewiseLoadController<AssetEntity>(
+        pageFuture: loadMore, pageSize: perPage);
 
     _getGalleryImagePaths();
   }
@@ -59,7 +60,8 @@ class _GalleryPreviewerState extends State<GalleryPreviewer> {
       PhotoManager.openSetting();
       return;
     }
-    List<AssetPathEntity> allImageTemp = await PhotoManager.getAssetPathList(type: RequestType.image);
+    List<AssetPathEntity> allImageTemp =
+        await PhotoManager.getAssetPathList(type: RequestType.image);
 
     setState(() {
       if (allImageTemp.length > 0) {
@@ -101,8 +103,11 @@ class _GalleryPreviewerState extends State<GalleryPreviewer> {
                     GestureDetector(
                       child: Row(
                         children: <Widget>[
-                          Icon(_expandedAlbums ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down),
-                          Text(_albums != null ? _selectedAlbum.name : "Albums"),
+                          Icon(_expandedAlbums
+                              ? Icons.keyboard_arrow_up
+                              : Icons.keyboard_arrow_down),
+                          Text(
+                              _albums != null ? _selectedAlbum.name : "Albums"),
                         ],
                       ),
                       onTap: () {
@@ -155,13 +160,17 @@ class _GalleryPreviewerState extends State<GalleryPreviewer> {
                             // physics: widget.physics ?? BouncingScrollPhysics(),
                             padding: EdgeInsets.all(0),
                             pageLoadController: _pageController,
-                            itemBuilder: (BuildContext context, AssetEntity a, int index) {
+                            itemBuilder: (BuildContext context, AssetEntity a,
+                                int index) {
                               return Container(
-                                decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 1)),
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.grey, width: 1)),
                                 child: InkWell(
                                     onTap: () async {
                                       Uint8List data;
-                                      if (widget.maxWidth == null && widget.maxHeight == null)
+                                      if (widget.maxWidth == null &&
+                                          widget.maxHeight == null)
                                         data = await a.originBytes;
                                       else {
                                         int width = widget.maxWidth == null
@@ -170,7 +179,8 @@ class _GalleryPreviewerState extends State<GalleryPreviewer> {
                                         int height = widget.maxHeight == null
                                             ? widget.maxWidth.toInt()
                                             : widget.maxHeight.toInt();
-                                        data = await a.thumbDataWithSize(width, height);
+                                        data = await a.thumbDataWithSize(
+                                            width, height);
                                       }
                                       if (_multiSelect && widget.multiSelect) {
                                         setState(() {
@@ -194,8 +204,10 @@ class _GalleryPreviewerState extends State<GalleryPreviewer> {
                                     // },
                                     child: _thumbs[a.id] == null
                                         ? FutureBuilder(
-                                            future: a.thumbDataWithSize(200, 200),
-                                            builder: (BuildContext context, AsyncSnapshot snapshot) {
+                                            future:
+                                                a.thumbDataWithSize(200, 200),
+                                            builder: (BuildContext context,
+                                                AsyncSnapshot snapshot) {
                                               if (snapshot.hasData) {
                                                 _thumbs[a.id] = snapshot.data;
                                                 return _buildThumbnail(a);
@@ -244,9 +256,12 @@ class _GalleryPreviewerState extends State<GalleryPreviewer> {
                                         controller: widget.controller,
                                         children: _albums
                                             .map((f) => ListTile(
-                                                  contentPadding: EdgeInsets.zero,
+                                                  contentPadding:
+                                                      EdgeInsets.zero,
                                                   leading: Icon(Icons.done,
-                                                      color: _selectedAlbum == f ? Colors.black : Colors.transparent),
+                                                      color: _selectedAlbum == f
+                                                          ? Colors.black
+                                                          : Colors.transparent),
                                                   title: Text(f.name),
                                                   onTap: () {
                                                     setState(() {
@@ -286,12 +301,17 @@ class _GalleryPreviewerState extends State<GalleryPreviewer> {
                 width: 24,
                 height: 24,
                 // padding: EdgeInsets.all(1.0),
-                decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: Colors.white, width: 2)),
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white, width: 2)),
                 child: _selectedImages.contains(imageData)
                     ? Container(
-                        decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: Colors.blue),
                         child: Center(
-                            child: Text((_selectedImages.indexOf(imageData) + 1).toString(),
+                            child: Text(
+                                (_selectedImages.indexOf(imageData) + 1)
+                                    .toString(),
                                 style: TextStyle(
                                   color: Colors.white,
                                 ))),

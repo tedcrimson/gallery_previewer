@@ -1,3 +1,7 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.2] - updated outdated dependencies
 
-* TODO: Describe initial release.
+## [0.0.1+1] - fix
+
+## [0.0.1] - init
+
+* initial release.

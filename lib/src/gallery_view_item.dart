@@ -11,7 +11,12 @@ class GalleryViewItem {
 }
 
 class GalleryViewItemThumbnail extends StatelessWidget {
-  const GalleryViewItemThumbnail({Key key, this.galleryViewItem, this.onTap, this.placeholder, this.errorWidget})
+  const GalleryViewItemThumbnail(
+      {Key key,
+      this.galleryViewItem,
+      this.onTap,
+      this.placeholder,
+      this.errorWidget})
       : super(key: key);
 
   final GalleryViewItem galleryViewItem;
@@ -31,8 +36,11 @@ class GalleryViewItemThumbnail extends StatelessWidget {
                   fit: BoxFit.fitHeight,
                   alignment: Alignment.center,
                   imageUrl: galleryViewItem.thumbnail,
-                  placeholder: (context, url) => this.placeholder ?? Center(child: CircularProgressIndicator()),
-                  errorWidget: (context, url, error) => this.errorWidget ?? Icon(Icons.error),
+                  placeholder: (context, url) =>
+                      this.placeholder ??
+                      Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) =>
+                      this.errorWidget ?? Icon(Icons.error),
                 ))));
   }
 }

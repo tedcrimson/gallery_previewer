@@ -74,10 +74,12 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
                   padding: const EdgeInsets.all(20.0),
                   child: Text(
                     '${currentIndex + 1}/${widget.galleryItems.length}',
-                    style: TextStyle(
-                        shadows: [Shadow(offset: Offset(0, 1), blurRadius: 3, color: Colors.black)],
-                        color: Colors.white,
-                        fontSize: 17.0),
+                    style: TextStyle(shadows: [
+                      Shadow(
+                          offset: Offset(0, 1),
+                          blurRadius: 3,
+                          color: Colors.black)
+                    ], color: Colors.white, fontSize: 17.0),
                   ),
                 ),
                 Positioned(
@@ -103,9 +105,11 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
                         left: 70,
                         bottom: 30,
                         child: RawMaterialButton(
-                          constraints: BoxConstraints(maxWidth: 60, maxHeight: 60),
+                          constraints:
+                              BoxConstraints(maxWidth: 60, maxHeight: 60),
                           onPressed: () {
-                            Navigator.of(context).pop(widget.galleryItems[currentIndex].url);
+                            Navigator.of(context)
+                                .pop(widget.galleryItems[currentIndex].url);
                           },
                           child: new Icon(
                             Icons.edit,
