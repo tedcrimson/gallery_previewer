@@ -37,7 +37,7 @@ class _GalleryPreviewerState extends State<GalleryPreviewer> {
   List<AssetPathEntity> _albums;
   Map<String, Uint8List> _thumbs = new Map<String, Uint8List>();
   bool _multiSelect = false;
-  List<AssetEntity> _selectedImages = new List<AssetEntity>();
+  List<AssetEntity> _selectedImages = [];
 
   bool _expandedAlbums = false;
   AssetPathEntity _selectedAlbum;
@@ -65,7 +65,7 @@ class _GalleryPreviewerState extends State<GalleryPreviewer> {
 
     setState(() {
       if (allImageTemp.length > 0) {
-        _albums = new List<AssetPathEntity>();
+        _albums = [];
         for (var album in allImageTemp) {
           _albums.add(album);
         }
@@ -224,10 +224,11 @@ class _GalleryPreviewerState extends State<GalleryPreviewer> {
                           if (_multiSelect && _selectedImages.length > 0)
                             Positioned(
                               bottom: 25,
-                              child: RaisedButton(
+                              child: ElevatedButton(
                                 child: Text('Send'), //TODO: change with builder
-                                color: Colors.blue,
-                                // backgroundColor: Colors.blue,
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all(Colors.blue)),
                                 onPressed: () async {
                                   List<Uint8List> imgs = [];
                                   for (var item in _selectedImages) {
